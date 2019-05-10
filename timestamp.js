@@ -292,6 +292,26 @@ class Timestamp {
             }
             return format;
         }
+
+        this.startOf = function(unit) {
+            switch(unit) {
+                case "month":
+                    return new Date(this.date.setDate(1));
+                default:
+                    console.error(`StartOf Error: "${unit}" is not a proper unit`);
+            }
+        }
+
+        this.endOf = function(unit) {
+            switch(unit) {
+                case "month":
+                    var thisMonth = this.date.getMonth();
+                    var nextMonth = new Date(this.date.setMonth(thisMonth + 1));
+                    return new Date(nextMonth.setDate(0));
+                default:
+                    console.error(`StartOf Error: "${unit}" is not a proper unit`);
+            }
+        }
     }
 }
 

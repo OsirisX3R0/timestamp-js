@@ -16,6 +16,8 @@ var second = document.getElementById("second");
 var meridiem = document.getElementById("meridiem");
 var errorFormat = document.getElementById("errorFormat");
 var errorWord = document.getElementById("errorWord");
+var startOf = document.getElementById("startOf");
+var endOf = document.getElementById("endOf");
 
 var stamp = timestamp();
 month.innerHTML = stamp.month();
@@ -36,3 +38,5 @@ format7.innerHTML = stamp.format("full");
 format8.innerHTML = stamp.format("12hour");
 errorFormat.innerHTML = stamp.format("m/d/y") + "\n<strong>Console</strong> Format Error: \"y\" is not a proper format";
 errorWord.innerHTML = stamp.format("fail");
+startOf.innerHTML = stamp.startOf("month");
+endOf.innerHTML = stamp.endOf("month");
