@@ -217,6 +217,21 @@ class Timestamp {
         }
 
         this.format = function(format = "yyyy-mm-ddTHH:ii:ss") {
+            switch(format) {
+                case "short":
+                    format = "m/d/yy";
+                    break;
+                case "24hour":
+                    format = "HH:ii:ss";
+                    break;
+                case "full":
+                    format = "MM DD, yyyy";
+                    break;
+                case "12hour":
+                    format = "h:ii:ss x";
+                    break;
+            }
+
             var orgFormat = format;
             if (orgFormat.includes("y")) {
                 var search = orgFormat.match(/[y]+/g)[0];                
