@@ -28,6 +28,9 @@
             <pre>timestamp().format(<span class="quote">"24hour"</span>) <span class="comment">// <span id="format6"></span></span></pre>
             <pre>timestamp().format(<span class="quote">"full"</span>) <span class="comment">// <span id="format7"></span></span></pre>
             <pre>timestamp().format(<span class="quote">"12hour"</span>) <span class="comment">// <span id="format8"></span></span></pre>
+            <pre><span class="comment">// A format error</span></pre>
+            <pre>timestamp().format(<span class="quote">"m/d/y"</span>) <span class="error">// <span id="errorFormat"></span></span></pre>
+            <pre>timestamp().format(<span class="quote">"fail"</span>) <span class="error">// <span id="errorWord"></span> (Work in progress)</span></pre>
         </code>
         <h2>Return</h2>
         <code>

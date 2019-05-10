@@ -30,3 +30,7 @@ code {
 .comment {
     color: #8f8f8f;
 }
+
+.error {
+    color: #D84D4D;
+}

@@ -1,4 +1,3 @@
-var newDate = "5/5/2019 4:46:19";
 class Timestamp {
     constructor(date) {
         if (!date)
@@ -49,50 +48,54 @@ class Timestamp {
                     break;
             }
 
-            if (format == "m") {
-                return month.toString();
-            } else if (format == "mm") {
-                if (month < 10)
-                    return "0" + month;
-                return month;
-            } else if (format == "M") {
-                return longMonth.slice(0, 3);
-            } else if (format == "MM") {
-                return longMonth;
-            } else {
-                console.error(`Error: "${format}" is not a proper format`);
+            switch(format) {
+                case "m":
+                    return month.toString();
+                case "mm":
+                    if (month < 10)
+                        return "0" + month;
+                    return month;
+                case "M":
+                    return longMonth.slice(0, 3);
+                case "MM":
+                    return longMonth;
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
         
         this.day = function(format = "d") {
             var day = this.date.getDate();
 
-            if (format == "d") {
-                return day.toString();
-            } else if (format == "dd") {
-                if (day < 10)
-                    day = "0" + day;
-                return day;
-            } else if (format == "DD") {
-                var lastDigit = day.toString().substr(-1);
-                var suffix;
+            switch(format) {
+                case "d":
+                    return day.toString();
+                case "dd":
+                    if (day < 10)
+                        day = "0" + day;
+                    return day;
+                case "DD":
+                    var lastDigit = day.toString().substr(-1);
+                    var suffix;
 
-                switch (lastDigit) {
-                    case "1":
-                        suffix = "st";
-                        break;
-                    case "2":
-                        suffix = "nd";
-                        break;
-                    case "3":
-                        suffix = "rd";
-                        break;
-                    default:
-                        suffix = "th";
-                        break;
-                }
+                    switch (lastDigit) {
+                        case "1":
+                            suffix = "st";
+                            break;
+                        case "2":
+                            suffix = "nd";
+                            break;
+                        case "3":
+                            suffix = "rd";
+                            break;
+                        default:
+                            suffix = "th";
+                            break;
+                    }
 
-                return day + suffix;
+                    return day + suffix;
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
         
@@ -124,58 +127,68 @@ class Timestamp {
                     break;
             }
 
-            if (format == "w") {
-                return weekday + 1;
-            } else if (format == "W") {
-                return dow.substring(0, 3);
-            } else if (format == "WW") {
-                return dow;
+            switch(format) {
+                case "w":
+                    return weekday + 1;
+                case "W":
+                    return dow.substring(0, 3);
+                case "WW":
+                    return dow;
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
         
         this.year = function(format = "yyyy") {
             var year = this.date.getFullYear();
 
-            if (format == "yyyy") {
-                return year.toString();
-            } else if (format == "yy") {
-                return year.toString().substring(2);
-            } else {
-                console.error(`Error: "${format}" is not a proper format`);
+            switch(format) {
+                case "yyyy":
+                    return year.toString();
+                case "yy":
+                    return year.toString().substring(2);
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
 
         this.hour = function(format = "h") {
             var hour = this.date.getHours();
 
-            if (format == "h") {
-                if (hour >= 12)
-                    hour -= 12
-                return hour
-            } else if (format == "hh") {
-                if (hour >= 12)
-                    hour -= 12                
-                if (hour < 10)
-                    return "0" + hour
-                return hour;
-            } else if (format == "H") {
-                return hour;
-            } else if (format == "HH") {              
-                if (hour < 10)
-                    return "0" + hour;
-                return hour;
+            switch(format) {
+                case "h":
+                    if (hour >= 12)
+                        hour -= 12
+                    return hour
+                case "hh":
+                    if (hour >= 12)
+                        hour -= 12                
+                    if (hour < 10)
+                        return "0" + hour
+                    return hour;
+                case "H":
+                    return hour;
+                case "HH":                            
+                    if (hour < 10)
+                        return "0" + hour;
+                    return hour;
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
 
         this.minute = function(format = "i") {
             var minute = this.date.getMinutes();
 
-            if (format == "i") {
-                return minute;
-            } else if (format == "ii") {              
-                if (minute < 10)
-                    return "0" + minute;
-                return minute;
+            switch(format) {
+                case "i":
+                    return minute;
+                case "ii":
+                    if (minute < 10)
+                        return "0" + minute;
+                    return minute;
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
 
@@ -196,6 +209,8 @@ class Timestamp {
                     if (second < 10)
                         return `0${second}.${millisecond}`;
                     return `${second}.${millisecond}`
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
 
@@ -204,15 +219,17 @@ class Timestamp {
 
             switch(format) {
                 case "x":
-                if (hour >= 12)
-                    return "pm"
-                else
-                    return "am"
+                    if (hour >= 12)
+                        return "pm"
+                    else
+                        return "am"
                 case "X":
-                if (hour >= 12)
-                    return "PM"
-                else
-                    return "AM"
+                    if (hour >= 12)
+                        return "PM"
+                    else
+                        return "AM"
+                default:
+                    console.error(`Format Error: "${format}" is not a proper format`);
             }
         }
 
