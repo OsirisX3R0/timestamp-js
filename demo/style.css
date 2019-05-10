@@ -1,0 +1,32 @@
+body {
+    background-color: #333;
+    font-family: 'Montserrat', sans-serif;
+    color: #dcdcdc;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* .grid {
+    display: grid;
+    grid-template-columns: 
+} */
+
+code {
+    width: 525px;
+    background-color: #434343;
+    border: 1px solid #5c5c5c;
+    border-radius: 3px;
+    margin: auto;
+    padding: 20px;
+    display: block;
+}
+
+.quote {
+    color: #d3b728;
+}
+
+.comment {
+    color: #8f8f8f;
+}

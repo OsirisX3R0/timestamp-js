@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Timestamp.js</title>
+</head>
+<body>
+    <h1>Timestamp.js</h1>
+
+    <div class="grid">
+        <h2>Just the timestamp</h2>
+        <code>
+                <pre>timestamp() // the Timestamp object</pre>
+        </code>
+        <h2>Format</h2>
+        <code>
+            <pre>timestamp().format(<span class="quote">"MM DD, yyyy h:ii:ss x"</span>) <span class="comment">// <span id="format1"></span></span></pre>
+            <pre>timestamp().format(<span class="quote">"WW"</span>) <span class="comment">// <span id="format2"></span></span></pre>
+            <pre>timestamp().format(<span class="quote">"M DD, yy"</span>) <span class="comment">// <span id="format3"></span></span></pre>
+            <pre>timestamp().format() <span class="comment">// <span id="format4"></span></span></pre>
+        </code>
+        <h2>Return</h2>
+        <code>
+            <pre>timestamp().day() <span class="comment">// <span id="day"></span></span></pre>
+            <pre>timestamp().weekday() <span class="comment">// <span id="weekday"></span></span></pre>
+            <pre>timestamp().month() <span class="comment">// <span id="month"></span></span></pre>
+            <pre>timestamp().year() <span class="comment">// <span id="year"></span></span></pre>
+            <pre>timestamp().hour() <span class="comment">// <span id="hour"></span></span></pre>
+            <pre>timestamp().minute() <span class="comment">// <span id="minute"></span></span></pre>
+            <pre>timestamp().second() <span class="comment">// <span id="second"></span></span></pre>
+            <pre>timestamp().meridiem() <span class="comment">// <span id="meridiem"></span> (Not super useful alone, but it's there)</span></pre>
+            <pre><span class="comment">// You can use the same formats you use on these if you like.</span></pre>
+        </code>
+    </div>
+
+    <script src="../timestamp.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>

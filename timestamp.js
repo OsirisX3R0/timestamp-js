@@ -96,11 +96,11 @@ class Timestamp {
             }
         }
         
-        this.dayOfWeek = function(format = "WW") {
-            var dayOfWeek = this.date.getDay()
+        this.weekday = function(format = "WW") {
+            var weekday = this.date.getDay()
             var dow;
 
-            switch (dayOfWeek) {
+            switch (weekday) {
                 case 0:
                     dow = "Sunday";
                     break;                
@@ -125,7 +125,7 @@ class Timestamp {
             }
 
             if (format == "w") {
-                return dayOfWeek + 1;
+                return weekday + 1;
             } else if (format == "W") {
                 return dow.substring(0, 3);
             } else if (format == "WW") {
@@ -183,33 +183,41 @@ class Timestamp {
             var second = this.date.getSeconds();
             var millisecond = this.date.getMilliseconds();
 
-            if (format == "s") {
-                return second;
-            } else if (format == "ss") {              
-                if (second < 10)
-                    return "0" + second;
-                return second;
-            } else if (format == "S") {
-                return `${second}.${millisecond}`
-            } else if (format == "SS") {
-                if (second < 10)
-                    return `0${second}.${millisecond}`;
-                return `${second}.${millisecond}`
+            switch(format) {
+                case "s":
+                    return second;
+                case "ss":
+                    if (second < 10)
+                        return "0" + second;
+                    return second;
+                case "S":
+                    return `${second}.${millisecond}`
+                case "SS":
+                    if (second < 10)
+                        return `0${second}.${millisecond}`;
+                    return `${second}.${millisecond}`
             }
         }
 
-        this.format = function(format) {
+        this.meridiem = function(format = "x") {
+            var hour = this.date.getHours();
+
+            switch(format) {
+                case "x":
+                if (hour >= 12)
+                    return "pm"
+                else
+                    return "am"
+                case "X":
+                if (hour >= 12)
+                    return "PM"
+                else
+                    return "AM"
+            }
+        }
+
+        this.format = function(format = "yyyy-mm-ddTHH:ii:ss") {
             var orgFormat = format;
-            if (orgFormat.includes("m") || orgFormat.includes("M")) {
-                var search = orgFormat.match(/[mM]+/g)[0];
-                var month = this.month(search);
-                format = format.replace(search, month);
-            }
-            if (orgFormat.includes("d") || orgFormat.includes("D")) {
-                var search = orgFormat.match(/[dD]+/g)[0];
-                var day = this.day(search);
-                format = format.replace(search, day);
-            }
             if (orgFormat.includes("y")) {
                 var search = orgFormat.match(/[y]+/g)[0];                
                 var year = this.year(search);
@@ -219,6 +227,11 @@ class Timestamp {
                 var search = orgFormat.match(/[hH]+/g)[0];
                 var hour = this.hour(search);
                 format = format.replace(search, hour);
+            }
+            if (orgFormat.includes("d") || orgFormat.includes("D")) {
+                var search = orgFormat.match(/[dD]+/g)[0];
+                var day = this.day(search);
+                format = format.replace(search, day);
             }
             if (orgFormat.includes("i")) {
                 var search = orgFormat.match(/[i]+/g)[0];                
@@ -230,6 +243,21 @@ class Timestamp {
                 var second = this.second(search);
                 format = format.replace(search, second);
             }
+            if (orgFormat.includes("m") || orgFormat.includes("M")) {
+                var search = orgFormat.match(/[mM]+/g)[0];
+                var month = this.month(search);
+                format = format.replace(search, month);
+            }
+            if (orgFormat.includes("w") || orgFormat.includes("W")) {
+                var search = orgFormat.match(/[wW]+/g)[0];
+                var weekday = this.weekday(search);
+                format = format.replace(search, weekday);
+            }
+            if (orgFormat.includes("x") || orgFormat.includes("X")) {
+                var search = orgFormat.match(/[xX]+/g)[0];                
+                var meridiem = this.meridiem(search);
+                format = format.replace(search, meridiem);
+            }
             return format;
         }
     }
@@ -238,23 +266,3 @@ class Timestamp {
 const timestamp = function(date) {
     return new Timestamp(date);
 }
-
-var stamp = timestamp();
-var month = stamp.month();
-var day = stamp.day();
-var dayOfWeek = stamp.dayOfWeek();
-var year = stamp.year();
-var hour = stamp.hour("hh");
-var minute = stamp.minute("ii");
-var second = stamp.second("SS");
-var format = stamp.format("M DD, yyyy");
-
-console.log(timestamp());
-console.log(timestamp().month());
-console.log(timestamp().day());
-console.log(timestamp().dayOfWeek());
-console.log(timestamp().year());
-console.log(timestamp().hour("hh"));
-console.log(timestamp().minute("ii"));
-console.log(timestamp().second("SS"));
-console.log(timestamp().format("M DD, yy"));

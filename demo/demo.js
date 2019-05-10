@@ -1,0 +1,26 @@
+var format1 = document.getElementById("format1");
+var format2 = document.getElementById("format2");
+var format3 = document.getElementById("format3");
+var format4 = document.getElementById("format4");
+var month = document.getElementById("month");
+var day = document.getElementById("day");
+var weekday = document.getElementById("weekday");
+var year = document.getElementById("year");
+var hour = document.getElementById("hour");
+var minute = document.getElementById("minute");
+var second = document.getElementById("second");
+var meridiem = document.getElementById("meridiem");
+
+var stamp = timestamp();
+month.innerHTML = stamp.month();
+day.innerHTML = stamp.day();
+weekday.innerHTML = stamp.weekday();
+year.innerHTML = stamp.year();
+hour.innerHTML = stamp.hour();
+minute.innerHTML = stamp.minute();
+second.innerHTML = stamp.second();
+meridiem.innerHTML = stamp.meridiem();
+format1.innerHTML = stamp.format("MM DD, yyyy h:ii:ss x");
+format2.innerHTML = stamp.format("WW");
+format3.innerHTML = stamp.format("M DD, yy");
+format4.innerHTML = stamp.format();
