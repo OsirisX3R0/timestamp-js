@@ -293,7 +293,8 @@ class Timestamp {
             return format;
         }
 
-        this.startOf = function(unit) {
+        this.startOf = function(unit = "month") {
+            var start;
             switch(unit) {
                 case "month":
                     return new Date(this.date.setDate(1));
@@ -302,15 +303,24 @@ class Timestamp {
             }
         }
 
-        this.endOf = function(unit) {
+        this.startOf().format() = function(format) {
+            this.format(format);
+        }
+
+        this.endOf = function(unit = "month") {
+            var end;
             switch(unit) {
                 case "month":
                     var thisMonth = this.date.getMonth();
                     var nextMonth = new Date(this.date.setMonth(thisMonth + 1));
-                    return new Date(nextMonth.setDate(0));
+                    end = new Date(nextMonth.setDate(0));
                 default:
-                    console.error(`StartOf Error: "${unit}" is not a proper unit`);
+                    console.error(`EndOf Error: "${unit}" is not a proper unit`);
             }
+        }
+
+        this.endOf().format() = function(format) {
+            this.format(format);
         }
     }
 }

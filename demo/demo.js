@@ -38,5 +38,5 @@ format7.innerHTML = stamp.format("full");
 format8.innerHTML = stamp.format("12hour");
 errorFormat.innerHTML = stamp.format("m/d/y") + "\n<strong>Console</strong> Format Error: \"y\" is not a proper format";
 errorWord.innerHTML = stamp.format("fail");
-startOf.innerHTML = stamp.startOf("month");
-endOf.innerHTML = stamp.endOf("month");
+startOf.innerHTML = stamp.startOf("month").format();
+endOf.innerHTML = stamp.endOf("month").format();
