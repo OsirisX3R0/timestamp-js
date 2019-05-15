@@ -100,7 +100,7 @@ class Timestamp {
         }
         
         this.weekday = function(format = "WW") {
-            var weekday = this.date.getDay()
+            var weekday = this.date.getDay() + 1;
             var dow;
 
             switch (weekday) {
@@ -129,7 +129,7 @@ class Timestamp {
 
             switch(format) {
                 case "w":
-                    return weekday + 1;
+                    return weekday;
                 case "W":
                     return dow.substring(0, 3);
                 case "WW":
@@ -297,14 +297,10 @@ class Timestamp {
             var start;
             switch(unit) {
                 case "month":
-                    return new Date(this.date.setDate(1));
+                    return new Timestamp(this.date.setDate(1));
                 default:
                     console.error(`StartOf Error: "${unit}" is not a proper unit`);
             }
-        }
-
-        this.startOf().format() = function(format) {
-            this.format(format);
         }
 
         this.endOf = function(unit = "month") {
@@ -313,14 +309,10 @@ class Timestamp {
                 case "month":
                     var thisMonth = this.date.getMonth();
                     var nextMonth = new Date(this.date.setMonth(thisMonth + 1));
-                    end = new Date(nextMonth.setDate(0));
+                    return new Timestamp(nextMonth.setDate(0));
                 default:
                     console.error(`EndOf Error: "${unit}" is not a proper unit`);
             }
-        }
-
-        this.endOf().format() = function(format) {
-            this.format(format);
         }
     }
 }
