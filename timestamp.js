@@ -294,22 +294,32 @@ class Timestamp {
         }
 
         this.startOf = function(unit = "month") {
-            var start;
             switch(unit) {
+                case "year":
+                    var firstMonth = new Date(this.date.setMonth(0));
+                    firstMonth = new Date(firstMonth.setHours(0,0,0));
+                    return new Timestamp(firstMonth.setDate(1));
                 case "month":
                     return new Timestamp(this.date.setDate(1));
+                case "day":
+                    return new Timestamp(this.date.setHours(0,0,0));
                 default:
                     console.error(`StartOf Error: "${unit}" is not a proper unit`);
             }
         }
 
         this.endOf = function(unit = "month") {
-            var end;
             switch(unit) {
+                case "year":
+                    var lastMonth = new Date(this.date.setMonth(11));
+                    lastMonth = new Date(lastMonth.setHours(23,59,59));
+                    return new Timestamp(lastMonth.setDate(31));
                 case "month":
                     var thisMonth = this.date.getMonth();
                     var nextMonth = new Date(this.date.setMonth(thisMonth + 1));
                     return new Timestamp(nextMonth.setDate(0));
+                case "day":
+                    return new Timestamp(this.date.setHours(23,59,59));
                 default:
                     console.error(`EndOf Error: "${unit}" is not a proper unit`);
             }

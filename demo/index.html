@@ -46,8 +46,18 @@
         </code>
         <h2>Start/End of</h2>
         <code>
-            <pre>timestamp().startOf() <span class="comment">// <span id="startOf"></span></span></pre>            
-            <pre>timestamp().endOf() <span class="comment">// <span id="endOf"></span></span></pre>            
+            <pre>timestamp().startOf(<span class="quote">"month"</span>).format(<span class="quote">"MM DD, yyyy h:ii:ss x"</span>)<br /><span class="comment">// <span id="startMonth"></span> (format works here as well)</span>
+            </pre>
+            <pre>timestamp().endOf(<span class="quote">"month"</span>).format(<span class="quote">"MM DD, yyyy h:ii:ss x"</span>)<br /><span class="comment">// <span id="endMonth"></span></span>
+            </pre>
+            <pre>timestamp().startOf(<span class="quote">"day"</span>).format(<span class="quote">"MM DD, yyyy h:ii:ss x"</span>)<br /><span class="comment">// <span id="startDay"></span></span>
+            </pre>
+            <pre>timestamp().endOf(<span class="quote">"day"</span>).format(<span class="quote">"MM DD, yyyy h:ii:ss x"</span>)<br /><span class="comment">// <span id="endDay"></span></span>
+            </pre>
+            <pre>timestamp().startOf(<span class="quote">"year"</span>).format(<span class="quote">"MM DD, yyyy h:ii:ss x"</span>)<br /><span class="comment">// <span id="startYear"></span></span>
+            </pre>
+            <pre>timestamp().endOf(<span class="quote">"year"</span>).format(<span class="quote">"MM DD, yyyy h:ii:ss x"</span>)<br /><span class="comment">// <span id="endYear"></span></span>
+            </pre>
         </code>
     </div>
 
